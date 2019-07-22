@@ -5,6 +5,8 @@
  */
 package com.hariz.xp3;
 
+import java.util.Scanner;
+
 /**
  *
  * @author hariz.r
@@ -14,28 +16,35 @@ package com.hariz.xp3;
 //Used to set & get the acc info of customer
 public class CustAccount {
     
-    private String custCName, pw, pwHint;
-    private int accNo, accBal;
+    private String custCName;
+    //private String custCName, pw, pwHint;
+    private long accNo;
+    private float accBal;
+    
+    Scanner obj = new Scanner (System.in);
     
     public String getCName() {
     
+        obj.next();
         return custCName;
         
     }
     
-    public int getAcc() {
+    public long getAcc() {
     
+        obj.nextLong();
         return accNo;
         
     }
     
-    public int getBal() {
+    public float getBal() {
     
+        obj.nextFloat();
         return accBal;
     
     }
     
-    public String getPw() {
+    /*public String getPw() {
     
         return pw;
     
@@ -46,7 +55,7 @@ public class CustAccount {
     
         return pwHint;
     
-    }
+    }*/
     
     public void setCName (String custCName) {
     
@@ -66,7 +75,7 @@ public class CustAccount {
     
     }
     
-    public void setPw (String pw) {
+    /*public void setPw (String pw) {
     
         this.pw = pw;
         
@@ -76,6 +85,6 @@ public class CustAccount {
     
         this.pwHint = pwHint;
         
-    }
+    }*/
     
 }
