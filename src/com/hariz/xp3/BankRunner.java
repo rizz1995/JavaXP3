@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 //BankRunner
 //Used to run the entire thing
-public class BankRunner {
+public class BankRunner{
       
     /**
      * @param args the command line arguments
@@ -34,7 +34,7 @@ public class BankRunner {
         switch(num) {
             
             case 1:
-                System.out.println("Test 1");
+                //menuOne();
             break;
             
             case 2:
