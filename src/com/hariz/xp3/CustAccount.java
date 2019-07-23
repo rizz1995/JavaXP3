@@ -5,6 +5,8 @@
  */
 package com.hariz.xp3;
 
+//import java.io.FileOutputStream;
+//import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -52,7 +54,7 @@ public class CustAccount {
         
     }// end of method
     
-    public void loginCust() {
+    public void loginCust() throws InterruptedException {
     
         System.out.println("===============================================================================");
         System.out.println("====================================[LOGIN]====================================");
@@ -60,31 +62,32 @@ public class CustAccount {
         System.out.print("Please enter your account number: ");
         aNo = s.nextLong();
         Iterator i = cust.iterator();
-        
-        while (i.hasNext()) {
-            
-            Customer c = (Customer)i.next();
-            if (aNo == c.accNo) {
-            System.out.println("================================================================================");
-            System.out.println("================================================================================");
-            System.out.println("Account Number: " + c.accNo);
-            System.out.println("First Name: " + c.custFName);
-            System.out.println("Last Name: " + c.custLName);
-            System.out.println("Account Balance: RM" + c.accBal);
-            System.out.println("================================================================================");
-            System.out.println("================================================================================");
-        
-            }
-        }
-        
         String choice = "Y";
         while ("Y".equalsIgnoreCase(choice)) {
+            
+            while (i.hasNext()) {
+            
+                Customer c = (Customer)i.next();
+                if (aNo == c.accNo) {
+                System.out.println("================================================================================");
+                System.out.println("================================================================================");
+                System.out.println("Account Number: " + c.accNo);
+                System.out.println("First Name: " + c.custFName);
+                System.out.println("Last Name: " + c.custLName);
+                System.out.println("Account Balance: RM" + c.accBal);
+                System.out.println("================================================================================");
+                System.out.println("================================================================================");
+        
+                }
+            }
+        
+        
             System.out.println("[OPTIONS]");
             System.out.println("================================================================================");
             System.out.println("[1] TRANSFER TO OTHER ACCOUNT");
             System.out.println("[2] DEPOSIT TO ACCOUNT");
             System.out.println("[3] WITHDRAW FROM ACCOUNT");
-            //System.out.println("[4] EXIT TO MENU");
+            System.out.println("[4] EXIT TO MENU");
             System.out.print("Please select: ");
         
             int num = s.nextInt();
@@ -103,8 +106,9 @@ public class CustAccount {
                     withdrawFund();
                 break;
                 
-                //case 4:
-                    
+                case 4:
+                    BankRunner.mainMenu();
+                break;
                 
             
                 default:
@@ -112,8 +116,14 @@ public class CustAccount {
             
             }
         
-            System.out.println("Do you want to continue? (Y/N)");
+            System.out.println("Do you want to continue to main menu? (Y/N)");
             choice = s.next();
+            
+            /*if (!"Y".equalsIgnoreCase(choice)) {
+            
+                break;
+                
+            }*/
         
         }
 
@@ -169,5 +179,21 @@ public class CustAccount {
         System.out.print("You have deposited RM" + amt + " from your account. Your current balance is: " + aBal);
     
     }
+    
+    /*public void dWriteFile() {
+        try {
+            
+            FileOutputStream fos = new FileOutputStream ("Lists");
+            ObjectOutputStream oos = new ObjectOutputStream (fos);
+            oos.writeObject(cust);
+            oos.close();
+            
+        } catch (Exception ex) {
+        
+            ex.printStackTrace();
+        
+        }
+        
+    }*/
       
 }

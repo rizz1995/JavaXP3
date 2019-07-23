@@ -16,7 +16,7 @@ import java.util.Scanner;
 //Used to run the entire thing
 public class BankRunner{
     
-    public static void main(String[] args) throws InterruptedException { //main function
+    public static void mainMenu() throws InterruptedException {
     
         Scanner s = new Scanner (System.in);
         
@@ -47,6 +47,11 @@ public class BankRunner{
                     Thread.sleep(5000);
                     System.exit(0);
                 break;
+                
+                //case 4:
+                   // r.dWriteFile();
+                //debug
+                //break;
             
                 default:
                     System.out.println("Please enter a valid input");
@@ -64,6 +69,13 @@ public class BankRunner{
             
             }
         }
+    
+    }
+    
+    public static void main(String[] args) throws InterruptedException { //main function
+    
+        BankRunner.mainMenu();
+        
     }
     
 }
