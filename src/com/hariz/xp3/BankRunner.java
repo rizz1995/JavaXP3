@@ -15,49 +15,55 @@ import java.util.Scanner;
 //BankRunner
 //Used to run the entire thing
 public class BankRunner{
-      
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        //BankRegister obj = new BankRegister();
+    
+    public static void main(String[] args) throws InterruptedException { //main function
+    
         Scanner s = new Scanner (System.in);
         
-        System.out.println("[1] LOGIN");
-        System.out.println("[2] REGISTER");
-        System.out.println("[3] EXIT");
-        System.out.print("Please select: ");
+        CustAccount r = new CustAccount();
         
-        int num = s.nextInt();
+        String choice = "Y";
         
-        switch(num) {
+        while ("Y".equalsIgnoreCase(choice)) {
+            System.out.println("[1] LOGIN");
+            System.out.println("[2] REGISTER");
+            System.out.println("[3] EXIT");
+            System.out.print("Please select: ");
+        
+            int num = s.nextInt();
+        
+            switch(num) {
             
-            case 1:
-                //menuOne();
-            break;
+                case 1:
+                    r.loginCust();
+                break;
             
-            case 2:
-                System.out.println("Test 2");
-            break;
+                case 2:
+                    r.registerCust();
+                break;
             
-            case 3:
-                System.out.println("Test 3");
-            break;
+                case 3:
+                    System.out.println("Thanks for using our service!");
+                    Thread.sleep(5000);
+                    System.exit(0);
+                break;
             
-            default:
-                System.out.println("wut!");
+                default:
+                    System.out.println("Please enter a valid input");
             
+            }
+        
+            System.out.println("Do you want to continue? (Y/N)");
+            choice = s.next();
+        
+            if (!"Y".equalsIgnoreCase(choice)) {
+        
+                System.out.println("Thanks for using our service!");
+                Thread.sleep(5000);
+                System.exit(0);
+            
+            }
         }
-                    
-        /*int i;
-        String d;
-        //i = 0;
-        d = "*";
-        for (i = 1; i < 50; i++) {
-            System.out.print(d);
-        
-        }*/
     }
     
 }

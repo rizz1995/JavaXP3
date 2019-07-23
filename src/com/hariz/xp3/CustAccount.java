@@ -6,6 +6,7 @@
 package com.hariz.xp3;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,75 +17,78 @@ import java.util.Scanner;
 //Used to set & get the acc info of customer
 public class CustAccount {
     
-    private String custCName;
-    //private String custCName, pw, pwHint;
-    private long accNo;
-    private float accBal;
+    ArrayList cust = new ArrayList(); //create array list
     
-    Scanner obj = new Scanner (System.in);
+    Scanner s = new Scanner (System.in);
     
-    public String getCName() {
+    public void registerCust() {
     
-        obj.next();
-        return custCName;
+        System.out.println("==============================================================================");
+        System.out.println("==================================[REGISTER]==================================");
+        System.out.println("==============================================================================");
+        //while (true)  
+        System.out.print("Please enter your first name: ");
+        String fname = s.next();
+        System.out.print("Please enter your last name: ");
+        String lname = s.next();
+        System.out.print("Please enter your account number: ");
+        Long aNo = s.nextLong();
+        /*System.out.print("Please enter your password: ");
+        String pw = s.next();
+        System.out.print("Please enter your backup pin: ");
+        int pin = s.nextInt();*/
+        System.out.print("Please enter your account balance: ");
+        double aBal = s.nextFloat();
+        
+        Customer c = new Customer(fname, lname, aNo, aBal);
+        cust.add(c); //add to ArrayList
+        
+        System.out.println("Record successfully added");
+        
+    }// end of method
+    
+    public void loginCust() {
+    
+        System.out.println("===============================================================================");
+        System.out.println("====================================[LOGIN]====================================");
+        System.out.println("===============================================================================");
+        System.out.print("Please enter your account number: ");
+        
         
     }
     
-    public long getAcc() {
+    public void updateCust() {
     
-        obj.nextLong();
-        return accNo;
+        System.out.println("================================================================================");
+        System.out.println("====================================[UPDATE]====================================");
+        System.out.println("================================================================================");
+        
+    
+    }
+    
+    public void transferFund() {
+    
+        double amt = 0.00;
+        System.out.print("Enter the account number of the receiver: ");
         
     }
     
-    public float getBal() {
+    public void withdrawFund() {
     
-        obj.nextFloat();
-        return accBal;
-    
-    }
-    
-    /*public String getPw() {
-    
-        return pw;
+        double amt = 0.00;
+        System.out.print("Please enter the desired amount to withdraw: ");
+        amt = s.nextFloat();
+        //aBal = aBal - amt;
     
     }
     
+    public void depositFund() {
     
-    public String getPwHint() {
-    
-        return pwHint;
-    
-    }*/
-    
-    public void setCName (String custCName) {
-    
-        this.custCName = custCName;
-        
-    }
-    
-    public void setAcc (int accNo) {
-    
-        this.accNo = accNo;
+        float amt = 0.00f;
+        System.out.print("Please enter the desired amount to deposit: ");
+        amt = s.nextFloat();
+        //aBal = aBal + amt;
     
     }
-    
-    public void setBal (int accBal) {
-    
-        this.accBal = accBal;
-    
-    }
-    
-    /*public void setPw (String pw) {
-    
-        this.pw = pw;
-        
-    }
-
-    public void setPwHint (String pwHint) {
-    
-        this.pwHint = pwHint;
-        
-    }*/
-    
+      
 }
