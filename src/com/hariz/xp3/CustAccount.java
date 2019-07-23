@@ -20,13 +20,29 @@ import java.util.Iterator;
 //Used to set & get the acc info of customer
 public class CustAccount {
     
-    ArrayList cust = new ArrayList(); //create array list
+    
+    
+    ArrayList cust = new ArrayList(); //create array list    
     
     Scanner s = new Scanner (System.in);
     
     String fname, lname;
     Long aNo = 0L;
-    double amt = 0.00, aBal = 0.00;
+    double amt = 0.00, aBal;
+    
+    public void setArray() {
+    
+        Customer c1 = new Customer("Bella", "Donna", 123, 1200.50);
+        Customer c2 = new Customer("Aliah", "Nabilla", 124, 5543.25);
+        Customer c3 = new Customer("Edward", "Dass", 125, 12678.50);
+        Customer c4 = new Customer("Hazriq", "Daniel", 126, 201.50);
+        
+        cust.add(c1);
+        cust.add(c2);
+        cust.add(c3);
+        cust.add(c4);
+    
+    }
     
     public void registerCust() {
     
@@ -56,6 +72,8 @@ public class CustAccount {
     
     public void loginCust() throws InterruptedException {
     
+        
+        setArray();
         System.out.println("===============================================================================");
         System.out.println("====================================[LOGIN]====================================");
         System.out.println("===============================================================================");
@@ -116,7 +134,7 @@ public class CustAccount {
             
             }
         
-            System.out.println("Do you want to continue to main menu? (Y/N)");
+            System.out.println("Press Y to go back to option and any key to main menu: ");
             choice = s.next();
             
             /*if (!"Y".equalsIgnoreCase(choice)) {
@@ -159,15 +177,17 @@ public class CustAccount {
     
     public void withdrawFund() {
    
-        while (amt < aBal) {
-            System.out.print("Please enter the desired amount to withdraw: ");
-            amt = s.nextFloat();
-            if (amt > aBal) {
+        Customer c = new Customer(fname, lname, aNo, aBal);
+        
+        System.out.print("Please enter the desired amount to withdraw: ");
+        amt = s.nextFloat();
+            if (amt < 0 && amt > aBal) {
                 System.out.print("You have insufficient funds...");
             }
-        }
+        
         aBal -= amt;
         System.out.print("You have withdraw RM" + amt + " from your account. Your current balance is: " + aBal);
+        
     
     }
     

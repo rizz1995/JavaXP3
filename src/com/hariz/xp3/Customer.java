@@ -5,6 +5,7 @@
  */
 package com.hariz.xp3;
 
+
 /**
  *
  * @author Asus
@@ -23,6 +24,8 @@ public class Customer {
         this.custLName = custLName;
         this.accNo = accNo;
         this.accBal = accBal;
+        
+   
     
     }
 

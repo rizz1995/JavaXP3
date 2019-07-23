@@ -16,7 +16,11 @@ import java.util.Scanner;
 //Used to run the entire thing
 public class BankRunner{
     
+        
+    
     public static void mainMenu() throws InterruptedException {
+        
+        
     
         Scanner s = new Scanner (System.in);
         
@@ -73,9 +77,18 @@ public class BankRunner{
     }
     
     public static void main(String[] args) throws InterruptedException { //main function
-    
-        BankRunner.mainMenu();
         
+        
+        
+        //CustAccount p = new CustAccount();
+        
+        //p.cust.add(c1);
+        //p.cust.add(c2);
+        //p.cust.add(c3);
+        //p.cust.add(c4);
+        BankRunner.mainMenu();
+        //CustAccount p = new CustAccount();
+        //p.setArray();
     }
     
 }
