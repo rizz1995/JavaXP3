@@ -11,10 +11,11 @@ package com.hariz.xp3;
  */
 public class Customer {
     
-    private String custFName, custLName;
+    String custFName;
+    String custLName;
     /*private String custCName, pw, pwHint;*/
-    private long accNo;
-    private double accBal;
+    long accNo;
+    double accBal;
     
     Customer(String custFName, String custLName, long accNo, double accBal) {
         
