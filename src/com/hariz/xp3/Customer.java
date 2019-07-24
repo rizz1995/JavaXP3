@@ -5,20 +5,22 @@
  */
 package com.hariz.xp3;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author Asus
  */
-public class Customer {
+public class Customer implements Serializable {
     
     String custFName;
     String custLName;
     /*private String custCName, pw, pwHint;*/
-    long accNo;
+    int accNo;
     double accBal;
     
-    Customer(String custFName, String custLName, long accNo, double accBal) {
+    Customer(String custFName, String custLName, int accNo, double accBal) {
         
         this.custFName = custFName;
         this.custLName = custLName;

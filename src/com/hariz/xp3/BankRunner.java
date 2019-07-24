@@ -5,6 +5,8 @@
  */
 package com.hariz.xp3;
 
+import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -14,17 +16,18 @@ import java.util.Scanner;
 
 //BankRunner
 //Used to run the entire thing
-public class BankRunner{
+public class BankRunner implements Serializable {
     
         
     
-    public static void mainMenu() throws InterruptedException {
+    public static void mainMenu() throws InterruptedException, FileNotFoundException {
         
         
     
         Scanner s = new Scanner (System.in);
         
         CustAccount r = new CustAccount();
+        r.setArray();
         
         String choice = "Y";
         
@@ -52,11 +55,19 @@ public class BankRunner{
                     System.exit(0);
                 break;
                 
-                //case 4:
-                   // r.dWriteFile();
+                case 94:
+                   r.dWriteFile();
                 //debug
-                //break;
-            
+                break;
+                
+                case 95:
+                    r.dReadFile();
+                break;
+                
+                case 96:
+                    //r.setArray();
+                break;
+                
                 default:
                     System.out.println("Please enter a valid input");
             
@@ -76,7 +87,7 @@ public class BankRunner{
     
     }
     
-    public static void main(String[] args) throws InterruptedException { //main function
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException { //main function
         
         
         
@@ -86,7 +97,7 @@ public class BankRunner{
         //p.cust.add(c2);
         //p.cust.add(c3);
         //p.cust.add(c4);
-        BankRunner.mainMenu();
+        mainMenu();
         //CustAccount p = new CustAccount();
         //p.setArray();
     }
