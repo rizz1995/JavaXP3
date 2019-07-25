@@ -5,14 +5,11 @@
  */
 package com.hariz.xp3;
 
-import java.io.Serializable;
-
-
 /**
  *
  * @author Asus
  */
-public class Customer implements Serializable {
+public class Customer {
     
     String custFName;
     String custLName;
@@ -26,9 +23,6 @@ public class Customer implements Serializable {
         this.custLName = custLName;
         this.accNo = accNo;
         this.accBal = accBal;
-        
-   
-    
+ 
     }
-
 }// end of class

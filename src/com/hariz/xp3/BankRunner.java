@@ -5,8 +5,6 @@
  */
 package com.hariz.xp3;
 
-import java.io.FileNotFoundException;
-import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -14,21 +12,14 @@ import java.util.Scanner;
  * @author hariz.r
  */
 
-//BankRunner
-//Used to run the entire thing
-public class BankRunner implements Serializable {
-    
+public class BankRunner {   
+     
+    public static void main(String[] args) throws InterruptedException { //main function
         
-    
-    public static void mainMenu() throws InterruptedException, FileNotFoundException {
-        
-        
-    
         Scanner s = new Scanner (System.in);
         
         CustAccount r = new CustAccount();
-        r.setArray();
-        
+                
         String choice = "Y";
         
         while ("Y".equalsIgnoreCase(choice)) {
@@ -54,23 +45,9 @@ public class BankRunner implements Serializable {
                     Thread.sleep(5000);
                     System.exit(0);
                 break;
-                
-                case 94:
-                   r.dWriteFile();
-                //debug
-                break;
-                
-                case 95:
-                    r.dReadFile();
-                break;
-                
-                case 96:
-                    //r.setArray();
-                break;
-                
+               
                 default:
                     System.out.println("Please enter a valid input");
-            
             }
         
             System.out.println("Do you want to continue? (Y/N)");
@@ -83,23 +60,6 @@ public class BankRunner implements Serializable {
                 System.exit(0);
             
             }
-        }
-    
+        }  
     }
-    
-    public static void main(String[] args) throws InterruptedException, FileNotFoundException { //main function
-        
-        
-        
-        //CustAccount p = new CustAccount();
-        
-        //p.cust.add(c1);
-        //p.cust.add(c2);
-        //p.cust.add(c3);
-        //p.cust.add(c4);
-        mainMenu();
-        //CustAccount p = new CustAccount();
-        //p.setArray();
-    }
-    
 }

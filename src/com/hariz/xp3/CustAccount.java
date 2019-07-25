@@ -5,11 +5,6 @@
  */
 package com.hariz.xp3;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,28 +14,22 @@ import java.util.Iterator;
  * @author hariz.r
  */
 
-//CustAccount
-//Used to set & get the acc info of customer
-public class CustAccount implements Serializable {
-    
-    
-    
-    ArrayList cust = new ArrayList(); //create array list    
-    
+public class CustAccount {
+   
+    ArrayList cust = new ArrayList(); //create ArrayList   
     Scanner s = new Scanner (System.in);
-    //CustAccount obj = new CustAccount();
-    
     String fname, lname;
     int aNo = 0;
     double amt = 0.00, aBal;
     
     public void setArray() { //List of pre-made accounts
     
-        Customer c1 = new Customer("Bella", "Donna", 123, 1200.50);
+        Customer c1 = new Customer("Justina", "John", 123, 1200.50);
         Customer c2 = new Customer("Aliah", "Nabilla", 124, 5543.25);
-        Customer c3 = new Customer("Edward", "Dass", 125, 12678.50);
-        Customer c4 = new Customer("Hazriq", "Daniel", 126, 201.50);
+        Customer c3 = new Customer("Edwin", "Dass", 125, 12678.50);
+        Customer c4 = new Customer("Hafiz", "Daniel", 126, 201.50);
         
+        //adds the newly created objects into ArrayList
         cust.add(c1);
         cust.add(c2);
         cust.add(c3);
@@ -48,7 +37,7 @@ public class CustAccount implements Serializable {
     
     }
     
-    public void registerCust() {
+    public void registerCust() throws InterruptedException {
     
         System.out.println("==============================================================================");
         System.out.println("==================================[REGISTER]==================================");
@@ -67,16 +56,16 @@ public class CustAccount implements Serializable {
         System.out.print("Please enter your account balance: RM");
         aBal = s.nextFloat();
         
-        Customer c = new Customer(fname, lname, aNo, aBal);
-        cust.add(c); //add to ArrayList
+        Customer c = new Customer(fname, lname, aNo, aBal); //create object & insert the input data into it
+        cust.add(c); //add object to ArrayList
         
         System.out.println("Record successfully added");
+        loginCust();
         
     }// end of method
     
-    public void loginCust() throws InterruptedException, FileNotFoundException {
-    
-        
+    public void loginCust() throws InterruptedException {
+
         setArray();
         System.out.println("===============================================================================");
         System.out.println("====================================[LOGIN]====================================");
@@ -85,177 +74,187 @@ public class CustAccount implements Serializable {
         aNo = s.nextInt();
         custPage();
         
-        //String choice = "Y";
-        //while ("Y".equalsIgnoreCase(choice)) {
     }
     
-    public void custPage() throws InterruptedException, FileNotFoundException {
+    public void custPage() throws InterruptedException {
         
         Iterator i = cust.iterator();
         while (i.hasNext()) {
             
             Customer c = (Customer)i.next();
                 
-                
-                if (aNo == c.accNo) {
-                    
-                    System.out.println("================================================================================");
+                if (aNo == c.accNo) { //check to determine the account within ArrayList is the same as input & run it if it is the same
+                                   
                     System.out.println("================================================================================");
                     System.out.println("Account Number: " + c.accNo);
                     System.out.println("First Name: " + c.custFName);
                     System.out.println("Last Name: " + c.custLName);
                     System.out.println("Account Balance: RM" + String.format ("%.2f" , c.accBal));
                     System.out.println("================================================================================");
-                    System.out.println("================================================================================");
-                    
                     System.out.println("[OPTIONS]");
                     System.out.println("================================================================================");
-                    //System.out.println("[1] TRANSFER TO OTHER ACCOUNT");
-                    System.out.println("[2] DEPOSIT TO ACCOUNT");
-                    System.out.println("[3] WITHDRAW FROM ACCOUNT");
-                    System.out.println("[4] EXIT TO MENU");
+                    System.out.println("[1] DEPOSIT TO ACCOUNT");
+                    System.out.println("[2] WITHDRAW FROM ACCOUNT");
+                    System.out.println("[3] TRANSFER TO OTHER ACCOUNT");
+                    System.out.println("[4] LOGOUT & LOGIN TO ANOTHER ACCOUNT");
+                    System.out.println("[5] LOGOUT & REGISTER");
+                    System.out.println("[6] LOGOUT & EXIT");
                     System.out.print("Please select: ");
         
                     int num = s.nextInt();
             
                     switch(num) {
             
-                    //case 1:
-                    //transferFund();
-                    //break;
-            
-                    case 2:
+                    case 1:
                         depositFund();
                     break;
             
-                    case 3:
+                    case 2:
                         withdrawFund();
                     break;
-                
-                    case 4:
-                        //BankRunner.mainMenu();
-                        
+                    
+                    case 3:
+                        transferFund();
                     break;
-                
+                    
+                    case 4:
+                        loginCust();
+                    break;
+                    
+                    case 5:
+                        registerCust();
+                    break;
+                    
+                    case 6:
+                        System.out.println("Thanks for using our service!");
+                        Thread.sleep(5000);
+                        System.exit(0);
+                    break;
             
                     default:
                         System.out.println("Please enter a valid input");
+                        custPage();
                     break;
             
                     }
-        
                 }
             }
-        
-        
-                
-            
-        
-            //System.out.println(" Press Y to go back to option and any key to main menu: ");
-            //choice = s.next();
-            
-            /*if (!"Y".equalsIgnoreCase(choice)) {
-            
-                break;
-                
-            }*/
-        
-        }
-
-        
-        
-    //}
+    }
     
-    /*public void updateCust() {
-    
-        System.out.println("================================================================================");
-        System.out.println("====================================[UPDATE]====================================");
-        System.out.println("================================================================================");
-        
-    
-    }*/
-    
-    /*public void transferFund() {
-    
-        System.out.print("Enter the account number of the receiver: ");
-        //function to detect whether the account number is valid or not ???
-        //function to detect the account number within the ArrayList
-         while (amt < aBal) {
-            System.out.print("Please enter the desired amount to withdraw: ");
-            amt = s.nextFloat();
-            if (amt > aBal) {
-                System.out.print("You have insufficient funds...");
-            }
-        }
-        aBal -= amt;
-        //System.out.print("You have transfer RM" + amt + " to the account" + c.aNo + ". Your current balance is: " + aBal);
-        
-    }*/
-    
-    public void withdrawFund() throws InterruptedException, FileNotFoundException {
+    public void transferFund() throws InterruptedException {
    
-        Customer c = new Customer(fname, lname, aNo, aBal);
+        Iterator i = cust.iterator();
+        while (i.hasNext()) {
+            
+            Customer c = (Customer)i.next();
+                
+            if (aNo == c.accNo) {
+            
+                System.out.println("Please enter the receiver account number: ");
+                int aNoTr = s.nextInt(); //there is some error here when the entered account number doesn't exist
+                Iterator it = cust.iterator();
+                while (i.hasNext()) {
+                    
+                    Customer ct = (Customer)it.next();
+                    if (aNoTr == ct.accNo) {
+                    
+                        System.out.print("Please enter the desired amount to transfer: ");
+                        amt = s.nextFloat();
+                    
+                        if (amt < 0 || amt > c.accBal) {
+                        
+                            System.out.println("You have insuficient funds");
+                            custPage();
+                        } else {
+                            
+                            ct.accBal += amt;
+                            c.accBal -= amt;
+                            String pFName = ct.custFName;
+                            String pLName = ct.custLName;
+                            int pANo = ct.accNo;
+                            double cBal = ct.accBal;
+                            String oFName = c.custFName;
+                            String oLName = c.custLName;
+                            int oONo = c.accNo;
+                            double oBal = c.accBal;
+                            
+                            cust.remove(ct);
+                            cust.remove(c);
+                            
+                            Customer ctn = new Customer (pFName, pLName, pANo, cBal);
+                            Customer cn = new Customer (oFName, oLName, oONo, oBal);
+                            
+                            cust.add(ctn);
+                            cust.add(cn);
+                            
+                            System.out.println("You have transferred RM" + String.format("%.2f", amt) + " from your account to receiver account " + pANo +". Your current balance is: " + String.format("%.2f" , oBal));
+                            custPage();
+                            
+                        }
+                    }
+                }   
+            }
+        }
+    }
+    
+    public void withdrawFund() throws InterruptedException {
+   
+        Iterator i = cust.iterator();
+        while (i.hasNext()) {
+            
+            Customer c = (Customer)i.next();
+                
+            if (aNo == c.accNo) {
+            
+                System.out.print("Please enter the desired amount to withdraw: ");
+                amt = s.nextFloat();
         
-        //aBal;
-        
-        System.out.print("Please enter the desired amount to withdraw: ");
-        amt = s.nextFloat();
-            if (amt < 0 || amt > aBal) {
-                System.out.print("You have insufficient funds...");
+                if (amt < 0 || amt > c.accBal) {
+                    System.out.println("You have insufficient funds...");
+                    custPage();
+                } else {   
+            
+                    c.accBal -= amt;
+                    String pFName = c.custFName;
+                    String pLName = c.custLName;
+                    int pANo = c.accNo;
+                    double cBal = c.accBal;
+            
+                    cust.remove(c);            
+                    Customer cn = new Customer (pFName, pLName, pANo, cBal);
+                    cust.add(cn);
+                    System.out.println("You have withdraw RM" + String.format("%.2f", amt) + " from your account. Your current balance is: " + String.format("%.2f" , cBal));
+                    custPage();
+            
+                }
+            }
+        }        
+    }
+    
+    public void depositFund() throws InterruptedException {
+    
+        Iterator i = cust.iterator();
+        while (i.hasNext()) {
+                
+            Customer c = (Customer)i.next();
+            
+            if (aNo == c.accNo) {
+                
+                System.out.print("Please enter the desired amount to deposit: ");
+                amt = s.nextFloat();
+                c.accBal += amt;
+                String pFName = c.custFName;
+                String pLName = c.custLName;
+                int pANo = c.accNo;
+                double cBal = c.accBal;
+                
+                cust.remove(c);
+                Customer cn = new Customer (pFName, pLName, pANo, cBal);
+                cust.add(cn);
+                System.out.println("You have deposited RM" + String.format("%.2f", amt) + " from your account. Your current balance is: " + String.format("%.2f", cBal));
                 custPage();
-            } else {
-        
-            aBal -= amt;
-            System.out.print("You have withdraw RM" + amt + " from your account. Your current balance is: " + String.format("%.2f" , aBal));
-        c.accBal = aBal;
-        custPage();
-            }
-        
-        
-    
+                
+            }  
+        } 
     }
-    
-    public void depositFund() throws InterruptedException, FileNotFoundException {
-    
-        Customer c = new Customer(fname, lname, aNo, aBal);
-        
-        System.out.print("Please enter the desired amount to deposit: ");
-        amt = s.nextFloat();
-        aBal += amt;
-        System.out.print("You have deposited RM" + amt + " from your account. Your current balance is: " + String.format("%.2f", aBal));
-        c.accBal = aBal;
-        custPage();
-    
-    }
-    
-    public void dWriteFile() {
-        try {
-            
-            //FileWriter w = new FileWriter("D:\Users")
-            //FileOutputStream fos = new FileOutputStream ("Lists.xml");
-            //ObjectOutputStream oos = new ObjectOutputStream (fos);
-            //oos.writeObject(cust);
-            //oos.close();
-            
-        } catch (Exception ex) {
-        
-            ex.printStackTrace();
-        
-        }
-        
-    }
-    
-    public void dReadFile() throws FileNotFoundException {
-    
-        try (Scanner s1 = new Scanner (new FileReader("Lists.xml"))) {
-            while (s1.hasNext()) {
-                cust.add(s1.next());
-            }
-            s1.close();
-        }
-        
-        System.out.println(cust);
-        
-    }
-      
 }
